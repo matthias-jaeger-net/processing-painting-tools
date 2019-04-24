@@ -10,14 +10,24 @@ This is one one of countless attemps to organize my creative coding and collect 
 Format relates to the size and shape of a painting.  If it is a rectangle, the orientation can be longer in the vertical dimension (portrait) - or longer in the horizontal (landscape).  Format decisions  on both size and shape of the art surface will impact the composition and the effects. I store the width and the height of my processing canvas usually in two global variables For now I imagine this basic sketch:
 
 ```java
+void setup() {
+  // A landscape format
+  size(700, 500);
+  // No animation needed
+  noLoop();
+}
+void draw() {
+  // Clear the background with white
+  background(255);
+  // Here is my awsome grapic design
+  line(100, 100, 200, 180);
+}
+```
+
+
 // A landscape format
 final int w = 700;
 final int h = 500;
 Toolset painter = new Toolset(w, h);
 
 void settigs() { size(w, h); }
-void setup() {}
-void draw() {}
-```
-
-
