@@ -114,3 +114,40 @@ void setup() { noLoop(); }
 void draw() { artwork.render(); }
 
 ```
+
+```java
+class Artwork {
+  private int CanvasWidth, CanvasHeight, CanvasColor;
+  private Stroke[] linesToDraw = new Stroke[1];
+  int  getCanvasWidth()  { return CanvasWidth; }
+  int  getCanvasHeight() { return CanvasHeight; }
+  int  getCanvasColor()  { return CanvasColor; }
+  Artwork(int[] f, int c) { 
+   CanvasWidth  = f[0]; 
+   CanvasHeight = f[1]; 
+   CanvasColor = c;
+  } 
+  void render() { 
+    linesToDraw[0] = new Stroke(100, 100, 200, 180);
+    linesToDraw[0].render();
+  }
+  private class Stroke {
+    private PVector StrokeStart, StrokeEnd;
+    private PVector[] Vertices;
+    Stroke(int x1, int y1, int x2, int y2) { 
+      StrokeStart = new PVector(x1, y1);
+      StrokeEnd = new PVector(x2, y2);
+      Vertices = new PVector[]{StrokeStart, StrokeEnd}; 
+    }
+    void render() { 
+      beginShape(); 
+      for (PVector v : Vertices) vertex(v.x, v.y); 
+      endShape(); 
+    }
+  }
+}
+Artwork artwork = new Artwork(new int[]{700, 500}, color(255, 0, 255));
+void settings() { size(artwork.getCanvasWidth(), artwork.getCanvasHeight()); }
+void setup() { noLoop(); }
+void draw() {  background(artwork.getCanvasColor()); artwork.render(); }
+```
