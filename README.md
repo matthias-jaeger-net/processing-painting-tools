@@ -48,7 +48,6 @@ void setup() { noLoop(); }
 void draw() { artwork.render(); }
 
 ```
-## Replacing the line function with the idea of a brush stroke
 Thinking about the second parameter of the canvas, because this has grown in code a lot and does the same thing as in the basic sketch. I begin on thinking of the second parameter of a canvas the color of it's surface, leaving out the texture for now. I cleared up the code and start working on the first hard thing: Replacing the line function with the idea of a brush stroke.
 
 ```java
@@ -73,4 +72,45 @@ Artwork artwork = new Artwork(new int[]{700, 500}, 255);
 void settings() { size(artwork.getCanvasWidth(), artwork.getCanvasHeight()); }
 void setup() { noLoop(); }
 void draw() { artwork.render(); }
+```
+## Replacing the line function with the idea of a brush stroke
+Refactured the ```renderLine()``` into a class. 
+```java
+class Artwork {
+  private int CanvasWidth, CanvasHeight, CanvasColor;
+  private Line[] linesToDraw = new Line[1];
+  Artwork(int[] f, int c) { 
+    setCanvasWidth(f[0]); 
+    setCanvasHeight(f[1]); 
+    setCanvasColor(c);
+  } 
+  void setCanvasWidth  (int w) { CanvasWidth  = w; }
+  void setCanvasHeight (int h) { CanvasHeight = h; }
+  void setCanvasColor  (int c) { CanvasColor = c; }
+  int  getCanvasWidth  ()      { return CanvasWidth; }
+  int  getCanvasHeight ()      { return CanvasHeight; }
+  int  getCanvasColor  ()      { return CanvasColor; }
+  void render() { 
+    background(CanvasColor); 
+    linesToDraw[0] = new Line(100, 100, 200, 180);
+    linesToDraw[0].render();
+  }
+  class Line {
+    PVector[] Vertices;
+    Line(int x1, int y1, int x2, int y2) { 
+      setVertices(new PVector[]{new PVector(x1, y1), new PVector(x2, y2)}); 
+    }
+    void setVertices(PVector[] p) { Vertices = p; }
+    void render() { 
+      beginShape();
+      for (PVector v : Vertices) vertex(v.x, v.y);
+      endShape();
+    }
+  }
+}
+Artwork artwork = new Artwork(new int[]{700, 500}, 255);
+void settings() { size(artwork.getCanvasWidth(), artwork.getCanvasHeight()); }
+void setup() { noLoop(); }
+void draw() { artwork.render(); }
+
 ```
