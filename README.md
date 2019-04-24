@@ -8,6 +8,7 @@ This is one one of countless attemps to organize my creative coding and collect 
 
 ## The format of a painting
 Format relates to the size and shape of a painting.  If it is a rectangle, the orientation can be longer in the vertical dimension (portrait) - or longer in the horizontal (landscape).  Format decisions  on both size and shape of the art surface will impact the composition and the effects. I store the width and the height of my processing canvas usually in two global variables For now I imagine this basic sketch:
+
 ``java
 // A landscape format
 final int w = 700;
@@ -19,16 +20,4 @@ void setup() {}
 void draw() {}
 ```
 
-## Structure of a processing sketch  
 
-``java
-void settigs() {}
-``
-
-```java
-void setup() {}
-```
-
-```java
-void draw() {}
-```
