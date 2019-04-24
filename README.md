@@ -24,7 +24,7 @@ void draw() {
 }
 ```
 
-This is a perfecty fine sketch, but i would want to store the width and height of my processing canvas in variables. If you want to do that you can use the ``settings()``function. Tryig tho call ``size()``with variables inside of ``setup()``will create an error.
+This is a perfecty fine sketch, but i would want to store the width and height of my processing canvas in variables. If you want to do that you can use the ``settings()``function. Tryig tho call ``size()``with variables inside of ``setup()``will create an error. Is this a good method I dont know? 
 
 ```java
 final int[] format = {700, 500};
@@ -39,3 +39,29 @@ void draw() {
   line(100, 100, 200, 180);
 }
 ```
+
+I'd would rather prefer to store these properties in an object. Here is my first attempt. 
+```java
+class Canvas {
+ public int canvasWidth;
+ public int canvasHeight; 
+ Canvas(int w, int h) {
+  canvasWidth = w;
+  canvasHeight = h;
+ } 
+}
+Canvas c = new Canvas(700, 500);
+
+void settings() {
+ size(c.canvasWidth, c.canvasHeight);
+}
+void setup() {
+  noLoop();
+}
+void draw() {
+  background(255);
+  line(100, 100, 200, 180);
+}
+```
+
+Ok, that works, but I don't want to make canvases alone, I need to create a thing I call``Artwok``.
